@@ -1,24 +1,32 @@
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom/cjs/react-router-dom.min';
+
 import logo from './logo.svg';
 import './App.css';
 
+import Public from './Public';
+import Login from './Login';
+import Protected from './Protected';
+
+import { PrivateRoute } from './PrivateRoute';
+
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <ul>
+          <li>
+            <Link to='/public'>Public Page</Link>
+          </li>
+          <li>
+            <Link to='/protected'>Protected Page</Link>
+          </li>
+        </ul>
+        <Route path='/public' component={Public} />
+        <Route path='/login' component={Login} />
+        <PrivateRoute path='/protected' component={Protected} />
+      </div>
+    </Router>
   );
 }
 
